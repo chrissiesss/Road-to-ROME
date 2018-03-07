@@ -1,0 +1,27 @@
+//输入
+int n, a[MAX_N];
+
+void solve(){
+    int ans = 0;//答案
+
+    //让i<j<k，保证棍子不会被重复选中
+    for(int i = 0; i < n; i++){
+        for(int j = i + 1; j < n; j++){
+            for(int k = j + 1; k < n; k++){
+                int ma = max(a[i], max(a[j], a[k]));
+                int len = a[i] + a[j] + a[k];
+                int rest = len - ma;
+                
+                //判断是否能够构成三角形
+                if(ma < rest){  //tip:只要满足 最长的棍子>剩余两根棍子之和即可判断可以构成三角形，不需要验证三组边长
+                    
+                    //更新答案
+                    ans = len;
+                }
+            }
+        }
+    }
+    
+    //输出答案
+    cout<<ans;
+}
